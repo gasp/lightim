@@ -48,6 +48,7 @@ app.route = function(req,res){
 app.controller={
 	// /ping
 	ping : function(req,res){
+		var json = jtpl;
 		json.ping = 'pong'
 		res.message = app.utils.stringify(json);
 	},
