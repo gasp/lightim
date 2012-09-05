@@ -45,6 +45,13 @@ app.db = {
 
 
 app.route = function(req, res){
+	
+	// more elegant
+	// use call(app.route(res,req)) + arguments
+
+	//	if(req.url.match(/\//)) return 'root';
+	//	if(req.url.match(/\/about\/.*/)) return 'about';
+	//	if(req.url.match(/\/about\/.*/)) return 'about';
 
 	req.format = utils.extension(req.url.toString());
 	res.message += ' ('+req.format+')';
