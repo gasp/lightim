@@ -64,6 +64,25 @@ app.controller={
 	about : function(req,res){
 		res.message = 'he is '+req.matches[1];
 		console.log();
+	},
+	// /create/bob/myweakpassword
+	create : function(req,res){
+		var json = jtpl;
+		if(typeof app.db[req.matches[1]] === 'object')
+			return false;
+		
+		json.token = app.utils.token(5);
+		var d = new Date;
+		var user = {
+			user : req.matches[1],
+			password : req.matches[2],
+			token : json.token,
+			lastseen : d,
+			inbox: []
+		};
+		app.db[req.matches[1]] = user;
+		
+		res.message = app.utils.stringify(json);
 	}
 };
 
