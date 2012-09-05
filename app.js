@@ -46,7 +46,7 @@ app.db = {
 
 app.route = function(req, res){
 
-	req.format = 'json';
+	req.format = utils.extension(req.url.toString());
 	res.message += ' ('+req.format+')';
 
 	switch (req.url) {
@@ -96,4 +96,13 @@ app.route = function(req, res){
 			
 			break;
 	}
+}
+
+utils.extension = function(url){
+	var is_xml = /.\.xml$/i; 
+	var is_json = /.\.json$/i;
+
+	if (url.match(is_xml))	return 'xml';
+	if (url.match(is_json))	return 'json';
+	return 'plain';
 }
