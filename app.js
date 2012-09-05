@@ -2,6 +2,11 @@ var http = require('http'),
 	app = {},
 	jtpl = {'v':0.1};// answer
 
+app.db = {
+
+};
+
+
 
 http.createServer(function(req, res) {
 	if(!app.route(req,res)){
