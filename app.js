@@ -1,10 +1,10 @@
 var http = require('http'),
 	app = {},
-	utils = {};
+	utils = {},
+	json = {'v':0.1};// answer
 
 http.createServer(function(req, res) {
 	if(!app.route(req,res)){
-		res.statusCode= 404;
 		res.contentType = {'Content-Type': 'text/plain'};
 		res.message = '#404 '+req.url.toString()+' not found';
 	}
@@ -24,20 +24,39 @@ app.route = function(req,res){
 	var r;
 	for(i=0; i < app.routes.length;i++){
 		if(r = req.url.toString().match(app.routes[i].reg)){
-			req.regexp = r;
-			res.statusCode = 200;
 			if(typeof app.controller[app.routes[i].name] !== "function"){
+				console.log('500: no such action: '+app.routes[i].name);
+				res.statusCode = 500;
 				return false;
 			}
-			app.controller[app.routes[i].name].call(req,res);
+			res.statusCode = 200;
+			req.matches = r;
+			app.controller[app.routes[i].name].call(null,req,res);
 			return true;
 		}
 	}
+	res.statusCode= 404;
 	return false;
 }
 
 app.controller={
+	// /ping
 	ping : function(req,res){
-		req.message = 'pong';
+		json.ping = 'pong'
+		res.message = json.ping;
+	},
+	// /
+	index :  function(req,res){
+		res.message = 'go away';
+	},
+	// /tell/bob/hello
+	tell : function(req,res){
+		res.message = 'telling “'+req.matches[2]+'” to '+req.matches[1];
+	},
+	// /about/bob
+	about : function(req,res){
+		res.message = 'he is '+req.matches[1];
+		console.log();
 	}
-}
+};
+
