@@ -101,8 +101,12 @@ app.route = function(req, res){
 utils.extension = function(url){
 	var is_xml = /.\.xml$/i; 
 	var is_json = /.\.json$/i;
+	var is_jsonp = /.\.jsonp$/i;
+	var is_html = /.\.html$/i;
 
 	if (url.match(is_xml))	return 'xml';
 	if (url.match(is_json))	return 'json';
+	if (url.match(is_jsonp))	return 'jsonp';
+	if (url.match(is_html))	return 'html';
 	return 'plain';
 }
