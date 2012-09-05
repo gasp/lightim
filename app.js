@@ -79,5 +79,11 @@ app.utils = {
 			}
 			return (arr ? "[" : "{") + String(json) + (arr ? "]" : "}");
 		}
+	},
+	token : function(length){
+		var text = '',possible = "abcdef0123456789";
+		for (var i=0; i < length; i++)
+			text += possible.charAt(Math.floor(Math.random() * possible.length));
+		return text;
 	}
 };
