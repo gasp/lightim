@@ -54,7 +54,11 @@ app.controller={
 	},
 	// /
 	index :  function(req,res){
-		res.message = 'go away';
+		var json = jtpl;
+		json.list = app.db;
+		
+		res.message = app.utils.stringify(json);
+//		res.message = 'go away';
 	},
 	// /tell/bob/hello
 	tell : function(req,res){
