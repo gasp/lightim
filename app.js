@@ -1,6 +1,7 @@
 var http = require('http'),
 	app = {},
-	json = {'v':0.1};// answer
+	jtpl = {'v':0.1};// answer
+
 
 http.createServer(function(req, res) {
 	if(!app.route(req,res)){
