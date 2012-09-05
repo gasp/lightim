@@ -62,8 +62,22 @@ app.controller={
 	},
 	// /about/bob
 	about : function(req,res){
+		var json = jtpl;
+		if(typeof app.db[req.matches[1]] != 'object')
+			return false;
+		json.about = {lastseen: req.matches[1].lastseen.toString()};
+		res.message = app.utils.stringify(json);
+	},
+	// /inbox/bob/myweakpassword
+	inbox : function(req,res){
+		var json = jtpl;
+		if(typeof app.db[req.matches[1]] != 'object')
+			return false;
+		if(app.db[req.matches[1]].password != req.matches[2])
+			return false;
+		json.inbox = app.db[req.matches[1]].inbox;
+		app.db[req.matches[1]].inbox = [];
 		res.message = 'he is '+req.matches[1];
-		console.log();
 	},
 	// /create/bob/myweakpassword
 	create : function(req,res){
