@@ -73,7 +73,7 @@ app.utils = {
 				v = obj[n];
 				t = typeof(v);
 				if (obj.hasOwnProperty(n)) {
-					if (t == "string") v = '"' + v + '"'; else if (t == "object" && v !== null) v = jQuery.stringify(v);
+					if (t == "string") v = '"' + v + '"'; else if (t == "object" && v !== null) v = app.utils.stringify(v);
 					json.push((arr ? "" : '"' + n + '":') + String(v));
 				}
 			}
