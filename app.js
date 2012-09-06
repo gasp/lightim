@@ -68,14 +68,14 @@ app.controller={
 	ping : function(req,res){
 		req.json = jtpl;
 		req.json.ping = 'pong'
-		res.message = app.utils.stringify(req.json);
+		res.message = app.util.stringify(req.json);
 		return res;
 	},
 	// /
 	index :  function(req,res){
 		req.json = jtpl;
 		req.json.list = app.db;
-		res.message = app.utils.stringify(req.json);
+		res.message = app.util.stringify(req.json);
 //		res.message = 'go away';
 		return res;
 	},
@@ -88,7 +88,7 @@ app.controller={
 		json.tell = {message:req.matches[2],dt:d.format("isoDateTime")};
 
 		app.db[req.matches[1]].inbox.push(json.tell);
-		res.message = app.utils.stringify(json);
+		res.message = app.util.stringify(json);
 		return res;
 	},
 	// /about/bob
@@ -97,7 +97,7 @@ app.controller={
 		if(typeof app.db[req.matches[1]] != 'object')
 			return false;
 		json.about = {lastseen: req.matches[1].lastseen.toString()};
-		res.message = app.utils.stringify(json);
+		res.message = app.util.stringify(json);
 	},
 	// /inbox/bob/myweakpassword
 	inbox : function(req,res){
@@ -111,7 +111,7 @@ app.controller={
 		app.db[req.matches[1]].lastseen = d.format("isoDateTime");
 		json.inbox = app.db[req.matches[1]].inbox;
 		app.db[req.matches[1]].inbox = [];
-		res.message = app.utils.stringify(json);
+		res.message = app.util.stringify(json);
 		return res;
 	},
 	// /create/bob/myweakpassword
@@ -120,7 +120,7 @@ app.controller={
 		if(typeof app.db[req.matches[1]] === 'object')
 			return false;
 		
-		json.token = app.utils.token(5);
+		json.token = app.util.token(5);
 		var d = new Date;
 		var user = {
 			user : req.matches[1],
@@ -131,12 +131,12 @@ app.controller={
 		};
 		app.db[req.matches[1]] = user;
 		
-		res.message = app.utils.stringify(json);
+		res.message = app.util.stringify(json);
 		return res;
 	}
 };
 
-app.utils = {
+app.util = {
 	stringify : function(obj) {
 		var t = typeof (obj);
 		if (t != "object" || obj === null) {
@@ -150,7 +150,7 @@ app.utils = {
 				v = obj[n];
 				t = typeof(v);
 				if (obj.hasOwnProperty(n)) {
-					if (t == "string") v = '"' + v + '"'; else if (t == "object" && v !== null) v = app.utils.stringify(v);
+					if (t == "string") v = '"' + v + '"'; else if (t == "object" && v !== null) v = app.util.stringify(v);
 					json.push((arr ? "" : '"' + n + '":') + String(v));
 				}
 			}
