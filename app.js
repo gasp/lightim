@@ -102,10 +102,9 @@ app.controller={
 	// /inbox/bob/myweakpassword
 	inbox : function(req,res){
 		var json = jtpl;
-		if(typeof app.db[req.matches[1]] != 'object')
+		if(!app.component.login(req.matches[1],req.matches[2]))
 			return false;
-		if(app.db[req.matches[1]].password != req.matches[2])
-			return false;
+		
 		// updates the lastseendate
 		var d = new Date;
 		app.db[req.matches[1]].lastseen = d.format("isoDateTime");
@@ -135,6 +134,16 @@ app.controller={
 		return res;
 	}
 };
+
+app.component = {
+	login: function(username,password){
+		if(typeof app.db[username] != 'object')
+			return false;
+		if(app.db[username].password != password)
+			return false;
+		else return true;
+	}
+}
 
 app.util = {
 	stringify : function(obj) {
