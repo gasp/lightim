@@ -1,6 +1,6 @@
 var http = require('http'),
 	app = {},
-	version = 0.2;
+	version = 0.3;
 require('./date.format.js');
 
 app.db = {
