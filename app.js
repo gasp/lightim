@@ -5,15 +5,24 @@ app.db = {
 
 };
 
-
-
 http.createServer(function(req, res) {
-	if(!app.route(req,res)){
 	var json = {};
 	jtpl = {'v':version};
+	
+	r = app.route(req,res);
+	if(!r){
 		res.contentType = {'Content-Type': 'text/plain'};
 		res.message = '#404 '+req.url.toString()+' not found';
+		r = res;
 	}
+	res = r;
+
+		res.statusCode = 500;
+	if(typeof res.contentType === 'undefined')
+		res.contentType = {'Content-Type': 'text/plain'};
+	if(typeof res.message === 'undefined')
+		res.message = 'undefined';
+
 	res.writeHead(res.statusCode, res.contentType);
 	res.end(res.message+'\n');
 }).listen(8989);
