@@ -1,7 +1,6 @@
 var http = require('http'),
 	app = {},
-	jtpl = {'v':0.2};// answer
-
+	version = 0.2;
 app.db = {
 
 };
@@ -10,6 +9,8 @@ app.db = {
 
 http.createServer(function(req, res) {
 	if(!app.route(req,res)){
+	var json = {};
+	jtpl = {'v':version};
 		res.contentType = {'Content-Type': 'text/plain'};
 		res.message = '#404 '+req.url.toString()+' not found';
 	}
