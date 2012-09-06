@@ -122,6 +122,7 @@ app.controller={
 		app.db[req.matches[1]] = user;
 		
 		res.message = app.utils.stringify(json);
+		return res;
 	}
 };
 
