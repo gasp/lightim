@@ -17,6 +17,7 @@ http.createServer(function(req, res) {
 	}
 	res = r;
 
+	if(typeof res.statusCode === 'undefined')
 		res.statusCode = 500;
 	if(typeof res.contentType === 'undefined')
 		res.contentType = {'Content-Type': 'text/plain'};
@@ -44,11 +45,12 @@ app.route = function(req,res){
 				console.log('500: no such action: '+app.routes[i].name);
 				res.statusCode = 500;
 				return false;
+				break;
 			}
 			res.statusCode = 200;
 			req.matches = r;
-			app.controller[app.routes[i].name].call(null,req,res);
-			return true;
+			return app.controller[app.routes[i].name].call(null,req,res);
+			break;
 		}
 	}
 	res.statusCode= 404;
