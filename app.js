@@ -101,7 +101,8 @@ app.controller={
 			return false;
 		json.inbox = app.db[req.matches[1]].inbox;
 		app.db[req.matches[1]].inbox = [];
-		res.message = 'he is '+req.matches[1];
+		res.message = app.utils.stringify(json);
+		return res;
 	},
 	// /create/bob/myweakpassword
 	create : function(req,res){
