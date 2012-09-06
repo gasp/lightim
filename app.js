@@ -75,7 +75,14 @@ app.controller={
 	},
 	// /tell/bob/hello
 	tell : function(req,res){
-		res.message = 'telling “'+req.matches[2]+'” to '+req.matches[1];
+		var json = jtpl;
+		if(typeof app.db[req.matches[1]] != 'object')
+			return false;
+		json.tell = {message:req.matches[2]};
+
+		app.db[req.matches[1]].inbox.push(json.tell);
+		res.message = app.utils.stringify(json);
+		return res;
 	},
 	// /about/bob
 	about : function(req,res){
