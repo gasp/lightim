@@ -1,6 +1,8 @@
 var http = require('http'),
 	app = {},
 	version = 0.2;
+require('./date.format.js');
+
 app.db = {
 
 };
@@ -78,7 +80,8 @@ app.controller={
 		var json = jtpl;
 		if(typeof app.db[req.matches[1]] != 'object')
 			return false;
-		json.tell = {message:req.matches[2]};
+		var d = new Date();
+		json.tell = {message:req.matches[2],dt:d.format("isoDateTime")};
 
 		app.db[req.matches[1]].inbox.push(json.tell);
 		res.message = app.utils.stringify(json);
@@ -99,6 +102,9 @@ app.controller={
 			return false;
 		if(app.db[req.matches[1]].password != req.matches[2])
 			return false;
+		// updates the lastseendate
+		var d = new Date;
+		app.db[req.matches[1]].lastseen = d.format("isoDateTime");
 		json.inbox = app.db[req.matches[1]].inbox;
 		app.db[req.matches[1]].inbox = [];
 		res.message = app.utils.stringify(json);
@@ -116,7 +122,7 @@ app.controller={
 			user : req.matches[1],
 			password : req.matches[2],
 			token : json.token,
-			lastseen : d,
+			lastseen : d.format("isoDateTime"),
 			inbox: []
 		};
 		app.db[req.matches[1]] = user;
