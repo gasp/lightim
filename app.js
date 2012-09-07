@@ -15,6 +15,7 @@ http.createServer(function(req, res) {
 	
 	r = app.route(req,res);
 	if(!r){
+	  res.statusCode = 404;
 		res.contentType = {'Content-Type': 'text/plain'};
 		res.message = '#404 '+req.url.toString()+' not found';
 		r = res;
