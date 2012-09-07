@@ -101,7 +101,9 @@ app.controller={
 		var json = jtpl;
 		if(typeof app.db[req.matches[1]] != 'object')
 			return false;
-		json.about = {lastseen: req.matches[1].lastseen.toString()};
+		if(typeof app.db[req.matches[1]] == 'undefined')
+			return false;
+		json.about = {lastseen: app.db[req.matches[1]].lastseen.toString()};
 		res.message = app.util.stringify(json);
 	},
 	// /inbox/bob/myweakpassword
