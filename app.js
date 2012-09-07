@@ -105,6 +105,7 @@ app.controller={
 			return false;
 		json.about = {lastseen: app.db[req.matches[1]].lastseen.toString()};
 		res.message = app.util.stringify(json);
+		return res;
 	},
 	// /inbox/bob/myweakpassword
 	inbox : function(req,res){
