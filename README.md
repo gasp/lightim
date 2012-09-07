@@ -19,7 +19,12 @@ ping
 
 It should return something like this
 ```
-{"v":0.2,"ping":"pong"}
+HTTP/1.1 200 OK
+Content-Type: text/plain
+Connection: close
+Transfer-Encoding: Identity
+
+{"v":0.3,"ping":"pong"}
 ```
 
 Please do not use the v, in a future stable version it may simply return
