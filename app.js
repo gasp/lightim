@@ -27,6 +27,7 @@ http.createServer(function(req, res) {
 		res.contentType = {'Content-Type': 'text/plain'};
 	if(typeof res.message === 'undefined')
 		res.message = 'undefined';
+	res.sendDate = false;
 
 	res.writeHead(res.statusCode, res.contentType);
 	res.end(res.message+'\n');
