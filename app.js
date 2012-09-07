@@ -1,15 +1,17 @@
 var http = require('http'),
-	app = {},
-	version = 0.3;
+	app = {
+		config : {
+			version : 0.3,
+			port : 8989
+		},
+		db : []
+	};
+
 require('./date.format.js');
-
-app.db = {
-
-};
 
 http.createServer(function(req, res) {
 	var json = {};
-	jtpl = {'v':version};
+	jtpl = {'v':app.config.version};
 	
 	r = app.route(req,res);
 	if(!r){
@@ -28,7 +30,9 @@ http.createServer(function(req, res) {
 
 	res.writeHead(res.statusCode, res.contentType);
 	res.end(res.message+'\n');
-}).listen(8989);
+}).listen(app.config.port,function(){
+	console.log('lightim'+app.config.version+' server running on '+app.config.port)
+});
 
 
 app.routes = [ // specific to generic
