@@ -32,7 +32,6 @@ Please do not use the v, in a future stable version it may simply return
 {"ping":"pong"}
 ```
 
-
 Create an account
 ----------
 `/create/username/superpassword`
@@ -46,7 +45,9 @@ return is
 `{"v":0.4,"inbox":[]}`
 or
 `{"v":0.4,"inbox":[{"from":"gasp","message":"Hello%20!","dt":"2012-09-10T17:23:31"},{"from":"gasp","message":"how%20are%20you%20doing%20?","dt":"2012-09-10T17:24:04"}]}`
+
 Tell someone something
 ----------
+`/tell/username/superpassword/someusername/how%20are%20you%20doing%20?`
 return is
 `{"v":0.4,"tell":{"from":"gaspard","message":"how%20are%20you%20doing%20?","dt":"2012-09-10T17:23:31"}}`
