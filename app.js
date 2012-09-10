@@ -126,6 +126,7 @@ app.controller={
 		json.inbox = app.db[req.matches[1]].inbox;
 		app.db[req.matches[1]].inbox = [];
 		res.message = app.util.stringify(json);
+		res.setHeader("Cache-Control", "no-cache");
 		return res;
 	},
 	// /create/bob/myweakpassword
