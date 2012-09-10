@@ -38,8 +38,6 @@ http.createServer(function(req, res) {
 
 
 app.routes = [ // specific to generic
-	{name: 'tell',	reg : /\/tell\/([A-Za-z0-9]+)\/([A-Za-z0-9]+)$/i},
-	{name: 'tell',	reg : /\/t\/([A-Za-z0-9]+)\/([A-Za-z0-9]+)$/i},
 	{name: 'about',	reg : /\/about\/([a-z0-9]+)$/i},
 	{name: 'about',	reg : /\/a\/([a-z0-9]+)$/i},
 	{name: 'create',reg : /\/create\/([a-z0-9]+)\/([a-z0-9]+)$/i},
@@ -48,6 +46,8 @@ app.routes = [ // specific to generic
 	{name: 'inbox',	reg : /\/i\/([a-z0-9]+)\/([a-z0-9]+)$/i},
 	{name: 'ping',	reg : /\/ping$/i},
 	{name: 'index',	reg : /\/$/i}
+	{name: 'tell',	reg : /^\/tell\/([A-Za-z0-9]+)\/([A-Za-z0-9]+)\/(.*)$/i},
+	{name: 'tell',	reg : /^\/t\/([A-Za-z0-9]+)\/([A-Za-z0-9]+)\/(.*)$/i},
 ];
 app.route = function(req,res){
 	var r;
@@ -85,13 +85,17 @@ app.controller={
 //		res.message = 'go away';
 		return res;
 	},
-	// /tell/bob/hello
+	// /tell/jack/bob/hello jack tells hello to bob
 	tell : function(req,res){
 		var json = jtpl;
-		if(typeof app.db[req.matches[1]] != 'object')
+		if(typeof app.db[req.matches[1]] != 'object' || typeof app.db[req.matches[2]] != 'object')
 			return false;
 		var d = new Date();
-		json.tell = {message:req.matches[2],dt:d.format("isoDateTime")};
+		json.tell = {
+			from:req.matches[2],
+			message:req.matches[3],
+			dt:d.format("isoDateTime")
+		};
 
 		app.db[req.matches[1]].inbox.push(json.tell);
 		res.message = app.util.stringify(json);
