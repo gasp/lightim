@@ -38,8 +38,8 @@ http.createServer(function(req, res) {
 
 
 app.routes = [ // specific to generic
-	{name: 'tell',	reg : /^\/tell\/([A-Za-z0-9]+)\/([A-Za-z0-9]+)\/(.*)$/i},
-	{name: 'tell',	reg : /^\/t\/([A-Za-z0-9]+)\/([A-Za-z0-9]+)\/(.*)$/i},
+	{name: 'tell',	reg : /^\/tell\/([A-Za-z0-9]+)\/([A-Za-z0-9]+)\/([A-Za-z0-9]+)\/(.*)$/i},
+	{name: 'tell',	reg : /^\/t\/([A-Za-z0-9]+)\/([A-Za-z0-9]+)\/([A-Za-z0-9]+)\/(.*)$/i},
 	{name: 'about',	reg : /^\/about\/([a-z0-9]+)$/i},
 	{name: 'about',	reg : /^\/a\/([a-z0-9]+)$/i},
 	{name: 'create',reg : /^\/create\/([a-z0-9]+)\/([a-z0-9]+)$/i},
@@ -87,10 +87,13 @@ app.controller={
 //		res.message = 'go away';
 		return res;
 	},
-	// /tell/jack/bob/hello jack tells hello to bob
+	// /tell/jack/passjack/bob/hello jack tells hello to bob
 	tell : function(req,res){
 		var json = jtpl;
-		if(typeof app.db[req.matches[1]] != 'object' || typeof app.db[req.matches[2]] != 'object')
+		// check if users exists
+		if(typeof app.db[req.matches[1]] != 'object' || typeof app.db[req.matches[3]] != 'object')
+			return false;
+		if(!app.component.login(req.matches[1],req.matches[2]))
 			return false;
 		var d = new Date();
 		json.tell = {
