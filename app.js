@@ -193,6 +193,7 @@ app.component = {
 }
 
 app.util = {
+	// TODO : check JSON.stringify()
 	stringify : function(obj) {
 		var t = typeof (obj);
 		if (t != "object" || obj === null) {
