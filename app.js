@@ -87,7 +87,7 @@ app.controller={
 //		res.message = 'go away';
 		return res;
 	},
-	// /tell/jack/passjack/bob/hello jack tells hello to bob
+	// /tell/jack/jackspassword/bob/hello jack tells hello to bob
 	tell : function(req,res){
 		var json = jtpl;
 		// check if users exists
@@ -117,7 +117,7 @@ app.controller={
 		res.message = app.util.stringify(json);
 		return res;
 	},
-	// /inbox/bob/myweakpassword
+	// /inbox/bob/bobspassword
 	inbox : function(req,res){
 		var json = jtpl;
 		if(!app.component.login(req.matches[1],req.matches[2]))
@@ -132,7 +132,7 @@ app.controller={
 		res.setHeader("Cache-Control", "no-cache");
 		return res;
 	},
-	// /create/bob/myweakpassword
+	// /create/bob/bobspassword
 	create : function(req,res){
 		var json = jtpl;
 		if(typeof app.db[req.matches[1]] === 'object')
@@ -165,7 +165,7 @@ app.controller={
 		res.message = app.util.stringify(json);
 		return res;
 	},
-	// /delete/bob/myweakpassword
+	// /delete/bob/bobspassword
 	delete : function(req,res){
 		var json = jtpl;
 		if(!app.component.login(req.matches[1],req.matches[2]))
