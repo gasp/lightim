@@ -162,6 +162,16 @@ app.controller={
 		res.message = app.util.stringify(json);
 		return res;
 	},
+	// /delete/bob/myweakpassword
+	delete : function(req,res){
+		var json = jtpl;
+		if(!app.component.login(req.matches[1],req.matches[2]))
+			return false;
+		json.token = app.db[req.matches[1]].token; // do we really need that ?
+		delete app.db[req.matches[1]];
+		json.delete = true;
+		res.message = app.util.stringify(json);
+		return res;
 	}
 };
 
