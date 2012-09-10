@@ -182,6 +182,13 @@ app.component = {
 		if(app.db[username].password != password)
 			return false;
 		else return true;
+	},
+	identify: function(username,token){
+		if(typeof app.db[username] != 'object')
+			return false;
+		if(app.db[username].token != token)
+			return false;
+		else return true;
 	}
 }
 
