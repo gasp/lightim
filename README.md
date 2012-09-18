@@ -40,17 +40,25 @@ return is
 
 if the user exists, it returns a `404` error page (will change, see issue 3)
 
+Login
+----------
+`/login/username/superpassword`
+return is
+`{"v":0.4,"token":"d45f7"}`
+
+
 Check your messages
 ----------
-`/inbox/username/superpassword`
+`/inbox/username/token`
 return is 
 `{"v":0.4,"inbox":[]}`
 or
 `{"v":0.4,"inbox":[{"from":"gasp","message":"Hello%20!","dt":"2012-09-10T17:23:31"},{"from":"gasp","message":"how%20are%20you%20doing%20?","dt":"2012-09-10T17:24:04"}]}`
 
+
 Tell someone something
 ----------
-`/tell/username/superpassword/someusername/how%20are%20you%20doing%20?`
+`/tell/username/token/someusername/how%20are%20you%20doing%20?`
 return is
 `{"v":0.4,"tell":{"from":"gaspard","message":"how%20are%20you%20doing%20?","dt":"2012-09-10T17:23:31"}}`
 

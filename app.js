@@ -88,13 +88,13 @@ app.controller={
 //		res.message = 'go away';
 		return res;
 	},
-	// /tell/jack/jackspassword/bob/hello jack tells hello to bob
+	// /tell/jack/token/bob/hello jack tells hello to bob
 	tell : function(req,res){
 		var json = jtpl;
 		// check if users exists
 		if(typeof app.db[req.matches[1]] != 'object' || typeof app.db[req.matches[3]] != 'object')
 			return false;
-		if(!app.component.login(req.matches[1],req.matches[2]))
+		if(!app.component.identify(req.matches[1],req.matches[2]))
 			return false;
 		var d = new Date();
 		json.tell = {
