@@ -24,7 +24,7 @@ Content-Type: text/plain
 Connection: close
 Transfer-Encoding: Identity
 
-{"v":0.4,"ping":"pong"}
+{"v":0.5,"ping":"pong"}
 ```
 
 Please do not use the v, in a future stable version it may simply return
@@ -36,7 +36,7 @@ Create an account
 ----------
 `/create/username/superpassword`
 return is
-`{"v":0.4,"token":"d45f7"}`
+`{"v":0.5,"token":"d45f7"}`
 
 if the user exists, it returns a `404` error page (will change, see issue 3)
 
@@ -44,27 +44,29 @@ Login
 ----------
 `/login/username/superpassword`
 return is
-`{"v":0.4,"token":"d45f7"}`
+`{"v":0.5,"token":"d45f7"}`
 
 
 Check your messages
 ----------
 `/inbox/username/token`
 return is 
-`{"v":0.4,"inbox":[]}`
+`{"v":0.5,"inbox":[]}`
 or
-`{"v":0.4,"inbox":[{"from":"gasp","message":"Hello%20!","dt":"2012-09-10T17:23:31"},{"from":"gasp","message":"how%20are%20you%20doing%20?","dt":"2012-09-10T17:24:04"}]}`
+`{"v":0.5,"inbox":[{"from":"gasp","message":"Hello%20!","dt":"2012-09-10T17:23:31"},{"from":"gasp","message":"how%20are%20you%20doing%20?","dt":"2012-09-10T17:24:04"}]}`
+
+If username/token mismatch, it returns a #404 error (this may change to #403 in future versions), another apllication might have succesfully logged in.
 
 
 Tell someone something
 ----------
 `/tell/username/token/someusername/how%20are%20you%20doing%20?`
 return is
-`{"v":0.4,"tell":{"from":"gaspard","message":"how%20are%20you%20doing%20?","dt":"2012-09-10T17:23:31"}}`
+`{"v":0.5,"tell":{"from":"gaspard","message":"how%20are%20you%20doing%20?","dt":"2012-09-10T17:23:31"}}`
 
 
 About Someone
 ----------
 `/about/lionel`
 return is
-`{"v":0.4,"about":{"lastseen":"2012-09-10T18:14:27"}}` ("lastseen" may be standardized in the future by a "dt")
+`{"v":0.5,"about":{"lastseen":"2012-09-10T18:14:27"}}` ("lastseen" may be standardized in the future by a "dt")
