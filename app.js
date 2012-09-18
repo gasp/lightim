@@ -38,14 +38,15 @@ http.createServer(function(req, res) {
 
 
 app.routes = [ // specific to generic
-	{name: 'tell',	reg : /^\/tell\/([A-Za-z0-9]+)\/([A-Za-z0-9]+)\/([A-Za-z0-9]+)\/(.*)$/i},
-	{name: 'tell',	reg : /^\/t\/([A-Za-z0-9]+)\/([A-Za-z0-9]+)\/([A-Za-z0-9]+)\/(.*)$/i},
+	{name: 'create',reg : /^\/create\/([a-z0-9]+)\/([a-z0-9]+)$/i},
+	{name: 'create',reg : /^\/c\/([a-z0-9]+)\/([a-z0-9]+)$/i},
+	{name: 'login',	reg : /^\/login\/([a-z0-9]+)\/([a-z0-9]+)$/i},
+	{name: 'login',	reg : /^\/l\/([a-z0-9]+)\/([a-z0-9]+)$/i},
+	{name: 'delete',reg : /^\/delete\/([a-z0-9]+)\/([a-z0-9]+)$/i},
 	{name: 'about',	reg : /^\/about\/([a-z0-9]+)$/i},
 	{name: 'about',	reg : /^\/a\/([a-z0-9]+)$/i},
-	{name: 'create',reg : /^\/create\/([a-z0-9]+)\/([a-z0-9]+)$/i},
-	{name: 'login',	reg : /^\/login\/([a-z0-9]+)\/([a-z0-9]+)$/i},
-	{name: 'delete',reg : /^\/delete\/([a-z0-9]+)\/([a-z0-9]+)$/i},
-	{name: 'create',reg : /^\/c\/([a-z0-9]+)\/([a-z0-9]+)$/i},
+	{name: 'tell',	reg : /^\/tell\/([A-Za-z0-9]+)\/([A-Za-z0-9]+)\/([A-Za-z0-9]+)\/(.*)$/i},
+	{name: 'tell',	reg : /^\/t\/([A-Za-z0-9]+)\/([A-Za-z0-9]+)\/([A-Za-z0-9]+)\/(.*)$/i},
 	{name: 'inbox',	reg : /^\/inbox\/([a-z0-9]+)\/([a-z0-9]+)$/i},
 	{name: 'inbox',	reg : /^\/i\/([a-z0-9]+)\/([a-z0-9]+)$/i},
 	{name: 'ping',	reg : /^\/ping$/i},
