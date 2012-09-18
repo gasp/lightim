@@ -38,6 +38,8 @@ Create an account
 return is
 `{"v":0.4,"token":"d45f7"}`
 
+if the user exists, it returns a `404` error page (will change, see issue 3)
+
 Check your messages
 ----------
 `/inbox/username/superpassword`
@@ -51,3 +53,10 @@ Tell someone something
 `/tell/username/superpassword/someusername/how%20are%20you%20doing%20?`
 return is
 `{"v":0.4,"tell":{"from":"gaspard","message":"how%20are%20you%20doing%20?","dt":"2012-09-10T17:23:31"}}`
+
+
+About Someone
+----------
+`/about/lionel`
+return is
+`{"v":0.4,"about":{"lastseen":"2012-09-10T18:14:27"}}` ("lastseen" may be standardized in the future by a "dt")
