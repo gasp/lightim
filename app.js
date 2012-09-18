@@ -98,8 +98,8 @@ app.controller={
 			return false;
 		var d = new Date();
 		json.tell = {
-			from:req.matches[2],
-			message:req.matches[3],
+			from:req.matches[3],
+			message:req.matches[4],
 			dt:d.format("isoDateTime")
 		};
 
