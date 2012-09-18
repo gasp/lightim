@@ -155,11 +155,12 @@ app.controller={
 	},
 	// /login/bob/myweakpassword
 	login : function(req,res){
-		var json = jtpl;
+		var json = jtpl,
+			token = app.util.token(5);
 		if(!app.component.login(req.matches[1],req.matches[2]))
 			return false;
-		
-		json.token = app.db[req.matches[1]].token;
+		app.db[req.matches[1]].token = token;
+		json.token = token;
 		var d = new Date;
 		app.db[req.matches[1]].lastseen = d.format("isoDateTime");
 		
