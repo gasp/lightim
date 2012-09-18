@@ -1,10 +1,18 @@
 {
   "name": "lightim",
+  "description": "the tinyest and lightest instant messaging server software",
+  "tags" : ["http", "im", "chat", "lightweight", "nodb"],
   "version": "0.0.1",
-  "private": true,
-  "scripts": {
-    "start": "the tinyest and lightest instant messaging server software"
+  "homepage": "https://github.com/gasp/lightim",
+  "bugs":
+    { "url": "https://github.com/gasp/lightim/issues" },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/gasp/lightim.git"
   },
+  "author" : "Gaspard <gaspard from freelancis>",
   "dependencies": {
-  }
+  },
+  "engines" : ["node >=0.6"],
+  "license" : "Public Domain"
 }
