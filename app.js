@@ -118,10 +118,10 @@ app.controller={
 		res.message = app.util.stringify(json);
 		return res;
 	},
-	// /inbox/bob/bobspassword
+	// /inbox/bob/token
 	inbox : function(req,res){
 		var json = jtpl;
-		if(!app.component.login(req.matches[1],req.matches[2]))
+		if(!app.component.identify(req.matches[1],req.matches[2]))
 			return false;
 		
 		// updates the lastseendate
