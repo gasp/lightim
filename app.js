@@ -198,26 +198,8 @@ app.component = {
 }
 
 app.util = {
-	// TODO : check JSON.stringify()
 	stringify : function(obj) {
-		var t = typeof (obj);
-		if (t != "object" || obj === null) {
-			// simple data type
-			if (t == "string") obj = '"' + obj + '"';
-			return String(obj);
-		} else {
-			// recurse array or object
-			var n, v, json = [], arr = (obj && obj.constructor == Array);
-			for (n in obj) {
-				v = obj[n];
-				t = typeof(v);
-				if (obj.hasOwnProperty(n)) {
-					if (t == "string") v = '"' + v + '"'; else if (t == "object" && v !== null) v = app.util.stringify(v);
-					json.push((arr ? "" : '"' + n + '":') + String(v));
-				}
-			}
-			return (arr ? "[" : "{") + String(json) + (arr ? "]" : "}");
-		}
+		return JSON.stringify(obj);
 	},
 	token : function(length){
 		var text = '',possible = "abcdef0123456789";
