@@ -90,7 +90,8 @@ dateFormat.masks = {
 	isoDate:        "yyyy-mm-dd",
 	isoTime:        "HH:MM:ss",
 	isoDateTime:    "yyyy-mm-dd'T'HH:MM:ss",
-	isoUtcDateTime: "UTC:yyyy-mm-dd'T'HH:MM:ss'Z'"
+	isoUtcDateTime: "UTC:yyyy-mm-dd'T'HH:MM:ss'Z'",
+	mysqlDateTime:  "yyyy-mm-dd HH:MM:ss"
 };
 
 // Internationalization strings
