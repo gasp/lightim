@@ -98,12 +98,12 @@ app.controller={
 			return false;
 		var d = new Date();
 		json.tell = {
-			from:req.matches[3],
+			from:req.matches[1],
 			message:req.matches[4],
 			dt:d.format("isoDateTime")
 		};
 
-		app.db[req.matches[1]].inbox.push(json.tell);
+		app.db[req.matches[3]].inbox.push(json.tell);
 		res.message = app.util.stringify(json);
 		return res;
 	},
