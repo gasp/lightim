@@ -32,7 +32,7 @@ Please do not use the v, in a future stable version it may simply return
 {"ping":"pong"}
 ```
 
-Create an account
+create : Create an account
 ----------
 `/create/username/superpassword`
 return is
@@ -40,14 +40,14 @@ return is
 
 if the user exists, it returns a `404` error page (will change, see issue 3)
 
-Login
+create : Get a connexion token
 ----------
 `/login/username/superpassword`
 return is
 `{"v":0.5,"token":"d45f7"}`
 
 
-Check your messages
+inbox : Check your messages
 ----------
 `/inbox/username/token`
 return is 
@@ -58,14 +58,14 @@ or
 If username/token mismatch, it returns a #404 error (this may change to #403 in future versions), another apllication might have succesfully logged in.
 
 
-Tell someone something
+tell : Tell someone something
 ----------
 `/tell/username/token/someusername/how%20are%20you%20doing%20?`
 return is
 `{"v":0.5,"tell":{"from":"gaspard","message":"how%20are%20you%20doing%20?","dt":"2012-09-10 17:23:31"}}`
 
 
-About Someone
+about : Get some information about a user
 ----------
 `/about/lionel`
 return is
