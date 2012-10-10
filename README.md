@@ -13,7 +13,7 @@ $ node app.js
 use it !
 =======
 
-ping
+ping : Knock knock, is anyone home ?
 ----------
 `/ping`
 
