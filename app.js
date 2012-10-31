@@ -4,7 +4,7 @@ var http = require('http'),
 			version : 0.5,
 			port : 8989
 		},
-		db : []
+		db : {}
 	};
 
 require('./date.format.js');
