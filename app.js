@@ -1,7 +1,7 @@
 var http = require('http'),
 	app = {
 		config : {
-			version : 0.5,
+			version : 0.6,
 			port : 8989
 		},
 		db : {}
