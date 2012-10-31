@@ -142,7 +142,6 @@ app.controller={
 		json.token = app.util.token(5);
 		var d = new Date;
 		var user = {
-			user : req.matches[1],
 			password : req.matches[2],
 			token : json.token,
 			lastseen : d.format("isoDateTime"),
