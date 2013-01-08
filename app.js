@@ -13,6 +13,24 @@ http.createServer(function(req, res) {
 	var json = {};
 	jtpl = {'v':app.config.version};
 	
+	console.log(req.url);
+	// gather a callback
+	var cb=  req.url.match(/\?callback=.*$/i);
+
+	if(cb){
+		// clean up the trailing callback
+		req.url = req.url.substring(0,cb["index"]);
+		console.log("clean req.url",req.url);
+		
+		// get the value of the callback
+		var callback = cb[0].match(/=.*$/i);
+		callback = callback[0].substring(1);
+		console.log("callback",callback)
+		
+	}
+
+	
+	
 	r = app.route(req,res);
 	if(!r){
 	  res.statusCode = 404;
@@ -31,7 +49,11 @@ http.createServer(function(req, res) {
 	res.sendDate = false;
 
 	res.writeHead(res.statusCode, res.contentType);
-	res.end(res.message+'\n');
+	if(callback){
+		res.end(callback+'('+res.message+')\n');
+	}
+	else	res.end(res.message+'\n');
+	
 }).listen(app.config.port,function(){
 	console.log('lightim '+app.config.version+' server running on '+app.config.port)
 });
