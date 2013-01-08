@@ -15,20 +15,20 @@ http.createServer(function(req, res) {
 	
 	console.log(req.url);
 	// gather a callback
-	var cb=  req.url.match(/\?callback=.*$/i);
+	var callback = false,
+		qs = req.url.match(/([^?=&]+)(=([^&]*))?/g),
+		i = qs.length;
+	// clean url, remove any query string
+	req.url = qs[0];
+	
+	// for each qs element or if callback is seen
+	while(i-- && !c){
+		var c = qs[i].match(/callback=(.*)/i);
+		console.log(i,qs[i],c);
+		if(c) callback = c[1];
+	};
 
-	if(cb){
-		// clean up the trailing callback
-		req.url = req.url.substring(0,cb["index"]);
-		console.log("clean req.url",req.url);
-		
-		// get the value of the callback
-		var callback = cb[0].match(/=.*$/i);
-		callback = callback[0].substring(1);
-		console.log("callback",callback)
-		
-	}
-
+	console.log("callback",callback)
 	
 	
 	r = app.route(req,res);
