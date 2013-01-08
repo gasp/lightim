@@ -1,7 +1,7 @@
 var http = require('http'),
 	app = {
 		config : {
-			version : 0.7,
+			version : 0.8,
 			port : 8989
 		},
 		db : {}
@@ -118,14 +118,15 @@ app.controller={
 			return false;
 		if(!app.component.identify(req.matches[1],req.matches[2]))
 			return false;
-		var d = new Date();
-		json.tell = {
+		var d = new Date(),
+		message = {
 			from:req.matches[1],
 			message:req.matches[4],
 			dt:d.format("isoDateTime")
 		};
+		json.dt = message.dt;
 
-		app.db[req.matches[3]].inbox.push(json.tell);
+		app.db[req.matches[3]].inbox.push(message);
 		res.message = app.util.stringify(json);
 		return res;
 	},
@@ -136,7 +137,7 @@ app.controller={
 			return false;
 		if(typeof app.db[req.matches[1]] == 'undefined')
 			return false;
-		json.about = {lastseen: app.db[req.matches[1]].lastseen.toString()};
+		json.dt = app.db[req.matches[1]].lastseen.toString();
 		res.message = app.util.stringify(json);
 		return res;
 	},
@@ -195,7 +196,10 @@ app.controller={
 			return false;
 		json.token = app.db[req.matches[1]].token; // do we really need that ?
 		delete app.db[req.matches[1]];
-		json.delete = true;
+
+		var d = new Date();
+		json.dt = d.format("isoDateTime");
+		
 		res.message = app.util.stringify(json);
 		return res;
 	}
