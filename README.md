@@ -65,13 +65,16 @@ inbox : Check your messages
 howto: `/inbox/user/token`  
 sample: `/inbox/alice/12345` Alice uses her token to get her inbox
 
-return is  `{"v":0.8,"inbox":[]}` or  
-`{"v":0.8,"inbox":[ {"from":"bob","message":"Hello%20!","dt":"2012-09-10 17:23:31"}, 
-{"from":"charlie","message":"Hi%2C%20how%20are%20you%20doing%20%3F","dt":"2012-09-10 17:24:04"} ]}`
+return is  `{"v":0.8,"inbox":[]}` or 
+ 
+```
+{"v":0.8,"inbox":[ {"from":"bob","message":"Hello%20!","dt":"2012-09-10 17:23:31"}, 
+{"from":"charlie","message":"Hi%2C%20how%20are%20you%20doing%20%3F","dt":"2012-09-10 17:24:04"} ]}
+```
 
 If username/token mismatch, it returns a `404` error (this may change to `403` in future versions), another apllication might have succesfully logged in.
 
-To transform the string "Salut!%20t'aimes%20les%20caract%C3%A8res%20accentu%C3%A9s%20%3F" into "Salut! t'aimes les caractères accentués ?", use `encodeURIComponent(text)`
+To transform the string "Salut!%20t'aimes%20les%20caract%C3%A8res%20accentu%C3%A9s%20%3F" into "Salut! t'aimes les caractères accentués ?", use `decodeURIComponent(text)`
 
 
 about : Get information about a user
