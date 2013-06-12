@@ -3,7 +3,18 @@ lightim
 
 the tinyest and lightest instant messaging server software written in nodejs.
 
-test it on http://lightim.aws.af.cm/
+Clients
+=======
+
+[limc](https://github.com/gasp/limc) for mobile platforms
+[jquery-mobile-lightim](https://github.com/Krewh/jquery-mobile-lightim) same thing, some extra functionnalities
+[iChatte](https://github.com/EchoPhp/iChattes) this version has a funny icon
+
+
+
+test it
+=======
+on http://lightim.aws.af.cm/
 
 run it !
 =======
@@ -92,3 +103,5 @@ howto: `/delete/user/pass`
 sample: `/delete/alice/superpassword` Alice erases her account
 
 return is `{"v":0.8,"dt":"2012-09-10 18:14:27"}`
+
+
