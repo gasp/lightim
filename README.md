@@ -1,7 +1,9 @@
 lightim
 =======
 
-the tinyest and lightest instant messaging server software written in nodejs
+the tinyest and lightest instant messaging server software written in nodejs.
+
+test it on http://lightim.aws.af.cm/
 
 run it !
 =======
