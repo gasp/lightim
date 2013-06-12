@@ -2,7 +2,9 @@
   "name": "lightim",
   "description": "the tinyest and lightest instant messaging server software",
   "tags" : ["http", "im", "chat", "lightweight", "nodb"],
-  "version": "0.0.1",
+  "version": "0.8",
+  "scripts": 
+    { "start": "node app.js" },
   "homepage": "https://github.com/gasp/lightim",
   "bugs":
     { "url": "https://github.com/gasp/lightim/issues" },
