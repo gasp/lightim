@@ -9,6 +9,7 @@ clients
 * [limc](https://github.com/gasp/limc) for mobile platforms
 * [jquery-mobile-lightim](https://github.com/Krewh/jquery-mobile-lightim) same thing, some extra functionnalities
 * [iChatte](https://github.com/EchoPhp/iChattes) this version has a funny icon
+* [lightiim](https://github.com/warai/lightiim) a desktop version based on  [twitter bootstrap](https://github.com/twitter/bootstrap)
 
 
 
